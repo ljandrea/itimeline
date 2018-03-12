@@ -5,85 +5,91 @@ import './App.css';
 class App extends Component {
     constructor(props) {
         super(props);
-        this.baseUrl = 'https://api.spotify.com/v1/';
         this.state = {
-            artistQuery: '',
+            query: '',
             artist: null,
             albums: []
         };
+        this.handleChange = this.handleChange.bind(this);
+        this.getSearchResults = this.getSearchResults.bind(this);
     }
 
-    // inspired by: https://github.com/angularcity/spotifyexample
+    handleChange(event) {
+        this.setState({ query: event.target.value });
+    }
+
     getSearchResults() {
-        // reformats query for api usability
-        let artistQuery = this.state.artistQuery.replace(' ', '%20');
-        // endpoint used to get artist object
-        let artistSearch = '&type=artist';
-        // endpoint used to get album object
-        let albumSearch = '&type=album'
-
-        // url used to search for an item
-        let searchUrl = this.baseUrl + 'search?q=' + artistQuery;
-
-        // EXPIRED - HOW DO WE REFRESH THIS ??
-        let accessToken = 'BQCrL3QC-R_Kk8nbGpQQVZ13TCKqo459JAriSjtBEIohJRUOTehRTwjg_nuThOdvEiTZzSWB3P7HD1e507tXtIReREkIgnOpahBoISqkxx5sPGlnhRjqpOq8Q0uU6eDHysuv63G2B5H9cuDujH7W6oKgiwwgvMs';
-
-        let myOptions = {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + accessToken
-            },
-            mode: 'cors',
-            cache: 'default'
-        };
-
-        let artist = '';
-        let albums = [];
-
-        fetch(searchUrl + artistSearch, myOptions)
+        const URL_TEMPLATE = "https://itunes.apple.com/search?entity=album&limit=50&term={query}";
+        let url = URL_TEMPLATE.replace('{query}', this.state.query);
+        fetch(url)
             .then((response) => {
                 let data = response.json();
                 return data;
             })
             .then((data) => {
-                console.log(data);
-                this.setState({ artist: data.artists.items[0] });
+                console.log(data.results);
+                this.setState({
+                    // albums: this.refactorAlbums(data.results)
+                    albums: data.results,
+                    artist: data.results[0].artistName
+                });
+                console.log(this.state.artist);
             })
             .catch((err) => {
                 console.log(err);
             });
 
-        // fetch(searchUrl + albumSearch, myOptions)
-        //     .then((response) => {
-        //         let data = response.json();
-        //         return data;
-        //     })
-        //     .then((data) => {
-        //         let albumsRet = data.albums.items.filter((d) => {
-        //             return d.album_type === 'album';
-        //         });
-        //         this.setState({ albums: albumsRet });
-        //     });
-        // console.log(this.state.albums);
-        // let albumEndpoint = 'albums/{id}';
-        // fetch()
+        this.setState({ query: '' });
     }
 
-    render() {
-        console.log('state:' + this.state);
-        // this.getSearchResults('ed sheeran');
-        let artist = {};
-        if (this.state.artist !== null) {
-            artist = this.state.artist;
+    // ignore this method i was doing something idk
+
+    // refactorAlbums(albums) {
+    //     let newAlbums = {};
+    //     albums.map((d) => {
+    //         let key = d.collectionName.toString();
+    //         let album = {
+    //             albumName: d.collectionName.toString(),
+    //             artist: d.artistName.toString(),
+    //             genre: d.primaryGenreName.toString(),
+    //             releaseDate: d.releaseDate.toString(),
+    //             artwork: d.artworkUrl100.toString()
+    //         }
+    //         newAlbums[key] = album;
+    //     });
+    //     console.log(newAlbums);
+    //     // return newAlbums;
+    // }
+
+    // gets genre data based on the 50 results returned 
+    // counts number of albums with the given primary album genre
+    getGenreData() {
+        if (this.state.albums !== []) {
+            let genres = {};
+            this.state.albums.map((d) => {
+                let genre = d.primaryGenreName;
+                if (!genres[genre]) {
+                    genres[genre] = { count: 1 };
+                } else if (genres[genre]) {
+                    genres[genre].count++;
+                }
+            });
+            // console.log(genres);
+            return genres;
         }
-        console.log(artist);
+    }
+
+    // doesn't actually render any data, just used it to test out the search bar/api calls
+    render() {
+        console.log(this.getGenreData());
         return (
             <div className="container">
                 <hr />
                 <div className="col-lg-6">
                     <div className="input-group">
                         <input type="text"
-                            onChange={event => { this.setState({ artistQuery: event.target.value }) }}
+                            value={this.state.query}
+                            onChange={(e) => this.handleChange(e)}
                             className="form-control" placeholder="Search for..." />
                         <span className="input-group-btn">
                             <button
@@ -94,11 +100,8 @@ class App extends Component {
                 </div>
                 <hr />
                 <div>
-                    <div> {artist.name}   </div>
-                    <div> {'genres: ' + artist.genres} </div>
+                    {/* Albums: {this.state.albums} */}
                 </div>
-
-
             </div>
         );
     }
