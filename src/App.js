@@ -87,21 +87,30 @@ class App extends Component {
         return (
             <div className="container">
                 <NavBar />
+                <div id='intro'>*insert intro here* - i.e. Search an artist!</div>
                 <SearchBar changeCallback={this.handleChange} searchCallback={this.getSearchResults} />
                 <hr />
                 <Jumbotron artist={this.state.artist} />
-                <Router>
+                {/* <Router>
                     <div>
                         <Route exact path="/" render={() => <Timeline query={this.state.query} artist={this.state.artist} albums={this.state.albums} />} />
-                        <Route path="/timeline" render={() => (<Redirect to="/" />)} />
-                        {/* <Route path="/jokes" component={pages.Jokes} />
+                        <Route path="/timeline" render={() => (<Redirect to="/" />)} /> */}
+                {/* <Route path="/jokes" component={pages.Jokes} />
                         <Route path="/til" component={pages.TIL} />
                         <Route path="/profile" component={pages.Profile} /> */}
-                    </div>
-                </Router>
-                {/* <div id='timeline'>
+                {/* </div>
+                </Router> */}
+                <div id='charts' className='row'>
+                    <div id='radar' className='col' >*insert radar chart here*</div>
+                    <div id='scatter' className='col' >*insert scatter chart here*</div>
+                </div>
+                <div id='timeline'> *timeline is here*
                     <Timeline query={this.state.query} artist={this.state.artist} albums={this.state.albums} />
-                </div> */}
+                </div>
+                <div id='comments'>
+                    *insert comment section here*
+                </div>
+                <div id='end-padding'></div>
             </div>
         );
     }

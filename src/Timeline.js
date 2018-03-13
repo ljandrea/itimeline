@@ -28,7 +28,9 @@ export class Timeline extends Component {
             this.state.albums.map((d) => {
                 let name = d.collectionName.toString();
                 let artist = d.artistName.toString();
-                if (!name.includes('Single') && artist === this.state.artist) {
+                if (
+                    // !name.includes('Single') && 
+                    artist === this.state.artist) {
                     return albumsOnly.push(d);
                 }
             });
@@ -43,7 +45,7 @@ export class Timeline extends Component {
                         albumSite: d.collectionViewUrl.toString(),
                         artist: d.artistName.toString(),
                         artistSite: d.artistViewUrl.toString(),
-                        copyright: d.copyright.toString(),
+                        // copyright: d.copyright.toString(),
                         genre: d.primaryGenreName.toString(),
                         releaseDate: d.releaseDate.toString().slice(0, 10).replace(/-/g, '/'),
                         artwork: d.artworkUrl100.toString()

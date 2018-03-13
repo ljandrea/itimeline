@@ -33,7 +33,7 @@ export class TimelineElement extends Component {
                 </h3>
                 <h5 className="vertical-timeline-element-subtitle">{d.genre}</h5>
                 <p>
-                    {d.copyright}
+                    {/* {d.copyright} */}
                 </p>
             </VerticalTimelineElement>
         )

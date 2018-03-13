@@ -39,3 +39,26 @@
     background-color: lightgrey;
     width: 100%;
 }
+
+#intro {
+    margin-top: 3.45em;
+    background: white;
+    outline: black;
+    height: 10em;
+}
+
+#radar, #scatter {
+    height: 10em;
+    background: white;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+#end-padding {
+    padding-bottom: 2em;
+}
+
+#comments {
+    height: 10em;
+    background: white;
+}
