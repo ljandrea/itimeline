@@ -1,0 +1,16 @@
+nav {
+    width: 100vw;
+    margin-left: 0;
+}
+
+li {
+    padding-right: 1em;
+}
+
+.nav-item a {
+    color: white !important;
+}
+
+.navbar-brand {
+    padding-right: 1em;
+}

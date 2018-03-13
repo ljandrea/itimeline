@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Timeline } from './Timeline.js';
+import { NavBar } from './NavBar.js';
+import { SearchBar } from './SearchBar.js';
+import { HashRouter as Router, Route, Redirect } from "react-router-dom";
+import { Jumbotron } from './Jumbotron.js';
 
 class App extends Component {
     constructor(props) {
@@ -74,34 +79,29 @@ class App extends Component {
                     genres[genre].count++;
                 }
             });
-            // console.log(genres);
             return genres;
         }
     }
 
-    // doesn't actually render any data, just used it to test out the search bar/api calls
     render() {
-        console.log(this.getGenreData());
         return (
             <div className="container">
+                <NavBar />
+                <SearchBar changeCallback={this.handleChange} searchCallback={this.getSearchResults} />
                 <hr />
-                <div className="col-lg-6">
-                    <div className="input-group">
-                        <input type="text"
-                            value={this.state.query}
-                            onChange={(e) => this.handleChange(e)}
-                            className="form-control" placeholder="Search for..." />
-                        <span className="input-group-btn">
-                            <button
-                                onClick={() => this.getSearchResults()}
-                                className="btn btn-default" type="button">Go!</button>
-                        </span>
+                <Jumbotron artist={this.state.artist} />
+                <Router>
+                    <div>
+                        <Route exact path="/" render={() => <Timeline query={this.state.query} artist={this.state.artist} albums={this.state.albums} />} />
+                        <Route path="/timeline" render={() => (<Redirect to="/" />)} />
+                        {/* <Route path="/jokes" component={pages.Jokes} />
+                        <Route path="/til" component={pages.TIL} />
+                        <Route path="/profile" component={pages.Profile} /> */}
                     </div>
-                </div>
-                <hr />
-                <div>
-                    {/* Albums: {this.state.albums} */}
-                </div>
+                </Router>
+                {/* <div id='timeline'>
+                    <Timeline query={this.state.query} artist={this.state.artist} albums={this.state.albums} />
+                </div> */}
             </div>
         );
     }
