@@ -71,6 +71,9 @@ export class Timeline extends Component {
         return (
             <div>
                 <h3>timeline</h3>
+                <p>Explore how your artist has changed (or not) with each album and song released,
+                            and take a listen at their sound!
+                </p>
                 {this.state.artist !== null &&
                     <div id='timeline-inner'>
                         <VerticalTimeline>

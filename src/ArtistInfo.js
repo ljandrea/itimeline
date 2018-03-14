@@ -12,7 +12,9 @@ export class ArtistInfo extends Component {
                 <Jumbotron artist={this.props.artist} />
                 <div id='charts' className='panel panel-default jumptarget'>
                     <hr id='div-design' />
-                    <h3 style={{ marginBottom: '1em' }}>charts</h3>
+                    <h3>charts</h3>
+                    <p style={{ paddingTop: '0.5em' }}>
+                        Take a look at the genres your artist has embraced over the years, and his/her/their overall genre trends.</p>
                     <div className='row'>
                         <div id='radar' className='col' >*insert radar chart here*</div>
                         <div id='scatter' className='col' >*insert scatter chart here*</div>

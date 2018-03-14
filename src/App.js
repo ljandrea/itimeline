@@ -5,6 +5,7 @@ import { Introduction } from './Introduction.js';
 import { SearchBar } from './SearchBar.js';
 import { HashRouter as Router, Route, Redirect } from "react-router-dom";
 import { ArtistInfo } from './ArtistInfo.js';
+import { Team } from './Team.js';
 import firebase from 'firebase';
 import md5 from 'md5';
 
@@ -15,10 +16,21 @@ class App extends Component {
             query: '',
             artist: null,
             albums: [],
-            isHidden: true
+            showIntro: true
         };
         this.handleChange = this.handleChange.bind(this);
         this.getSearchResults = this.getSearchResults.bind(this);
+        this.showIntro = this.showIntro.bind(this);
+        this.hideIntro = this.hideIntro.bind(this);
+    }
+
+    showIntro() {
+        console.log(this.state.showIntro);
+        this.setState({ showIntro: true });
+    }
+
+    hideIntro() {
+        this.setState({ showIntro: false });
     }
 
     handleChange(event) {
@@ -37,8 +49,7 @@ class App extends Component {
                 // console.log(data.results);
                 this.setState({
                     albums: data.results,
-                    artist: data.results[0].artistName,
-                    isHidden: false
+                    artist: data.results[0].artistName
                 });
                 console.log(this.state.artist);
             })
@@ -88,15 +99,22 @@ class App extends Component {
     render() {
         return (
             <div className="container">
-                <NavBar artist={this.state.artist} />
-                <div id='introduction'>
-                    <Introduction />
-                    <SearchBar changeCallback={this.handleChange} searchCallback={this.getSearchResults} />
-                </div>
-
-                {!this.state.isHidden &&
+                <NavBar showIntro={this.state.showIntro} artist={this.state.artist} showCallback={this.showIntro} hideCallback={this.hideIntro} />
+                {this.state.showIntro &&
+                    <div id='introduction'>
+                        <Introduction />
+                        <SearchBar changeCallback={this.handleChange} searchCallback={this.getSearchResults} />
+                    </div>
+                }
+                {this.state.artist !== null && this.state.showIntro &&
                     <ArtistInfo query={this.state.query} artist={this.state.artist} albums={this.state.albums} />
                 }
+                <Router>
+                    <div>
+                        <Route path='/meet-the-team' component={Team} />
+                    </div>
+                </Router>
+
                 {/* <Router>
                         <div>
                             <Route exact path="/" render={() => <Timeline query={this.state.query} artist={this.state.artist} albums={this.state.albums} />} />

@@ -26,8 +26,8 @@ export class Comment extends Component {
 
     render() {
         return (
-            <div className='postList'>
-                <div className='card p-2 m-2'>
+            <div className='postList' style={{ marginBottom: '1.2em' }}>
+                <div className='card' style={{ padding: '1em' }}>
                     <h4 className="card-title">
                         {this.props.info.content}
                     </h4>

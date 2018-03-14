@@ -54,3 +54,7 @@
 h3 {
     color: black !important;
 }
+
+p {
+    padding-top: 0.5em;
+}

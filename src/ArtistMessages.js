@@ -69,9 +69,12 @@ export class ArtistMessages extends Component {
     render() {
         return (
             <div>
-                <h3 style={{ marginBottom: '1em' }}>comments</h3>
+                <h3>comments</h3>
+                <p style={{ paddingTop: '0.5em', marginBottom: '0' }}>Have an interesting insight to share?
+                Did you learn something new? Do you just freaking love this artist? Feel free to comment below!</p>
+                <strong>Note: Be nice! Don't post anything hateful, offensive, or rude.</strong>
                 {/* This makes each comment for the specific artist */}
-                <div style={{ paddingBottom: '1em' }}>
+                <div style={{ padding: '1em 0' }}>
                     <Post posts={this.getPosts()} artist={this.props.artist} />
                 </div>
                 <hr />
@@ -80,15 +83,14 @@ export class ArtistMessages extends Component {
                     <h5>add a comment:</h5>
                     <input className="form-control "
                         name="name"
-                        // value might be = {this.state.author} ??
                         value={this.state.author}
                         placeholder='name'
+                        style={{ marginBottom: '0.5em' }}
                         onChange={(event) => { this.updateAuthor(event) }}
                     />
                     <input className="form-control "
                         name="content"
                         placeholder='comment'
-                        // value might be = {this.state.content} ??
                         value={this.state.content}
                         onChange={(event) => { this.updateContent(event) }}
                     />
