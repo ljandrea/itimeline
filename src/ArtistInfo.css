@@ -1,0 +1,9 @@
+#artist-info {
+    width: 80% !important;
+}
+
+#div-design {
+    height: 5px;
+    background: linear-gradient(to right, #c6e2ff, #ffe9a3);
+    border: 0;
+}

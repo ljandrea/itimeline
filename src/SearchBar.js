@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Timeline } from './Timeline.js';
-import { NavBar } from './NavBar.js';
 import './SearchBar.css';
 
 export class SearchBar extends Component {

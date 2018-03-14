@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import { VerticalTimeline } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import './Timeline.css';
 import { TimelineElement } from './TimelineElement.js';
@@ -9,7 +9,7 @@ export class Timeline extends Component {
         super(props);
         this.state = {
             artist: this.props.artist,
-            albums: []
+            albums: this.props.albums
         };
     }
 
@@ -26,7 +26,6 @@ export class Timeline extends Component {
 
             // filters results to be only albums of the artist
             this.state.albums.map((d) => {
-                let name = d.collectionName.toString();
                 let artist = d.artistName.toString();
                 if (
                     // !name.includes('Single') && 
@@ -45,13 +44,14 @@ export class Timeline extends Component {
                         albumSite: d.collectionViewUrl.toString(),
                         artist: d.artistName.toString(),
                         artistSite: d.artistViewUrl.toString(),
-                        // copyright: d.copyright.toString(),
+                        id: d.collectionId.toString(),
                         genre: d.primaryGenreName.toString(),
                         releaseDate: d.releaseDate.toString().slice(0, 10).replace(/-/g, '/'),
                         artwork: d.artworkUrl100.toString()
                     }
                     uniqueAlbums[key] = album;
                 }
+                return uniqueAlbums;
             });
             // convert to array
             uniqueAlbums = Object.values(uniqueAlbums);
@@ -67,10 +67,10 @@ export class Timeline extends Component {
     }
 
     render() {
-        let data = this.getTimelineData();
+        // let data = this.getTimelineData();
         return (
             <div>
-
+                <h3>timeline</h3>
                 {this.state.artist !== null &&
                     <div id='timeline-inner'>
                         <VerticalTimeline>

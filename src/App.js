@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { Timeline } from './Timeline.js';
 import { NavBar } from './NavBar.js';
+import { Introduction } from './Introduction.js';
 import { SearchBar } from './SearchBar.js';
 import { HashRouter as Router, Route, Redirect } from "react-router-dom";
-import { Jumbotron } from './Jumbotron.js';
+import { ArtistInfo } from './ArtistInfo.js';
+import firebase from 'firebase';
+import md5 from 'md5';
 
 class App extends Component {
     constructor(props) {
@@ -13,7 +14,8 @@ class App extends Component {
         this.state = {
             query: '',
             artist: null,
-            albums: []
+            albums: [],
+            isHidden: true
         };
         this.handleChange = this.handleChange.bind(this);
         this.getSearchResults = this.getSearchResults.bind(this);
@@ -32,11 +34,11 @@ class App extends Component {
                 return data;
             })
             .then((data) => {
-                console.log(data.results);
+                // console.log(data.results);
                 this.setState({
-                    // albums: this.refactorAlbums(data.results)
                     albums: data.results,
-                    artist: data.results[0].artistName
+                    artist: data.results[0].artistName,
+                    isHidden: false
                 });
                 console.log(this.state.artist);
             })
@@ -86,32 +88,41 @@ class App extends Component {
     render() {
         return (
             <div className="container">
-                <NavBar />
-                <div id='intro'>*insert intro here* - i.e. Search an artist!</div>
-                <SearchBar changeCallback={this.handleChange} searchCallback={this.getSearchResults} />
-                <hr />
-                <Jumbotron artist={this.state.artist} />
+                <NavBar artist={this.state.artist} />
+                <div id='introduction'>
+                    <Introduction />
+                    <SearchBar changeCallback={this.handleChange} searchCallback={this.getSearchResults} />
+                </div>
+
+                {!this.state.isHidden &&
+                    <ArtistInfo query={this.state.query} artist={this.state.artist} albums={this.state.albums} />
+                }
                 {/* <Router>
-                    <div>
-                        <Route exact path="/" render={() => <Timeline query={this.state.query} artist={this.state.artist} albums={this.state.albums} />} />
-                        <Route path="/timeline" render={() => (<Redirect to="/" />)} /> */}
+                        <div>
+                            <Route exact path="/" render={() => <Timeline query={this.state.query} artist={this.state.artist} albums={this.state.albums} />} />
+                            <Route path="/timeline" render={() => (<Redirect to="/" />)} /> */}
                 {/* <Route path="/jokes" component={pages.Jokes} />
-                        <Route path="/til" component={pages.TIL} />
-                        <Route path="/profile" component={pages.Profile} /> */}
+                            <Route path="/til" component={pages.TIL} />
+                            <Route path="/profile" component={pages.Profile} /> */}
                 {/* </div>
-                </Router> */}
-                <div id='charts' className='row'>
+                    </Router> */}
+
+                {/* <div id='charts' className='row'>
                     <div id='radar' className='col' >*insert radar chart here*</div>
                     <div id='scatter' className='col' >*insert scatter chart here*</div>
                 </div>
-                <div id='timeline'> *timeline is here*
+                <div id='timeline'>
+                    <h3>Timeline</h3>
                     <Timeline query={this.state.query} artist={this.state.artist} albums={this.state.albums} />
                 </div>
                 <div id='comments'>
-                    *insert comment section here*
-                </div>
-                <div id='end-padding'></div>
-            </div>
+                    *insert comment section here* */}
+                {/* <ArtistMessages /> */}
+                {/* </div>
+                <div id='end-padding'></div> */}
+            </div >
+
+
         );
     }
 }

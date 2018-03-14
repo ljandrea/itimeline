@@ -1,3 +1,6 @@
 #search {
-    padding-top: 1em;
+    /* position: fixed; */
+    padding-bottom: 1em;
+    width: 70%;
+    margin-left: 15%;
 }

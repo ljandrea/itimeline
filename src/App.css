@@ -22,43 +22,48 @@
     font-size: large;
 }
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);
     }
     to {
         transform: rotate(360deg);
     }
-}
+} */
 
 #root {
-    background-color: lightgrey;
-}
-
-.container {
-    background-color: lightgrey;
-    width: 100%;
-}
-
-#intro {
-    margin-top: 3.45em;
-    background: white;
-    outline: black;
-    height: 10em;
+    padding-top: 3em;
+    /* background-color: lightgrey; */
+    /* height: 100vh; */
+    /* padding-bottom: 15.5%; */
 }
 
 #radar, #scatter {
     height: 10em;
-    background: white;
+    background: grey;
     margin-left: 1em;
     margin-right: 1em;
 }
 
-#end-padding {
-    padding-bottom: 2em;
+.jumptarget:before {
+    display: block;
+    content: " ";
+    /* margin-top: 0px; */
+    height: 50px;
+    visibility: hidden;
 }
 
-#comments {
-    height: 10em;
-    background: white;
+.container {
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+#introduction {
+    padding: 10% 0;
+    text-align: center;
+    background-image: url('./intro-background.jpg');
+    margin: 0 auto;
+    /* background-size: 100%;
+    background-repeat: no-repeat; */
+    color: black;
 }
