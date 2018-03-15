@@ -74,11 +74,18 @@ class App extends Component {
                 }
                 return genre;
             });
-            return genres;
+            let radarLabels = Object.keys(genres);
+            let values = Object.values(genres);
+            let radarValues = [];
+            values.map((d) => {
+                radarValues.push(d.count);
+            });
+            return { radarLabels, radarValues };
         }
     }
 
     render() {
+        console.log(this.getGenreData());
         return (
             <body className="container">
                 <NavBar showIntro={this.state.showIntro} artist={this.state.artist} showCallback={this.showIntro} hideCallback={this.hideIntro} />
