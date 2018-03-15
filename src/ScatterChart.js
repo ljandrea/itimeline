@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ScatterChart, CartesianGrid, XAxis, YAxis, Scatter, Tooltip, ResponsiveContainer } from 'recharts';
 
+// Renders a scatter chart of the genres album releases and genres
 export class GenreScatter extends Component {
     constructor(props) {
         super(props);

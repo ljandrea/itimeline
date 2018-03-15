@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Scatter, Legend, Tooltip, ResponsiveContainer } from 'recharts';
 
+// Renders a radar chart of all the artist's genres
 export class GenreRadar extends Component {
     constructor(props) {
         super(props);
-        this.state={ 
-            artist: this.props.artist, 
+        this.state = {
+            artist: this.props.artist,
             albums: this.props.albums
         }
     }
@@ -16,6 +17,7 @@ export class GenreRadar extends Component {
             albums: nextProps.albums
         });
     }
+
     getGenreData() {
         if (this.state.albums !== []) {
             let genres = {};
@@ -34,28 +36,31 @@ export class GenreRadar extends Component {
             values.map((d) => {
                 radarValues.push(d.count);
             });
-            let data = []; 
+            let data = [];
             radarLabels.map((d, i) => {
                 data.push({
-                    genre: radarLabels[i], 
+                    genre: radarLabels[i],
                     count: radarValues[i]
-                })
-            })
-            return data; 
+                });
+            });
+            return data;
         }
 
     }
- 
+
     render() {
         return (
-            <ResponsiveContainer width='100%' height='100%'>
-                <RadarChart outerRadius='75%' data={this.getGenreData()}>
-                    <PolarGrid />
-                    <PolarAngleAxis dataKey="genre" />
-                    <PolarRadiusAxis />
-                    <Radar name={this.state.artist} dataKey="count" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-                </RadarChart>
-            </ResponsiveContainer>
+            <div style={{ width: '100%', height: '100%' }}>
+                <h5>Radar</h5>
+                <ResponsiveContainer width='100%' height='100%'>
+                    <RadarChart outerRadius='75%' data={this.getGenreData()}>
+                        <PolarGrid />
+                        <PolarAngleAxis dataKey="genre" />
+                        <PolarRadiusAxis />
+                        <Radar name={this.state.artist} dataKey="count" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+                    </RadarChart>
+                </ResponsiveContainer>
+            </div>
         )
     }
 }

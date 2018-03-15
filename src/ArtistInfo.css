@@ -11,4 +11,5 @@
 #radar, #scatter {
     height: 15em;
     width: 100%;
+    margin: 0;
 }

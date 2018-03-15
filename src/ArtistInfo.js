@@ -23,8 +23,9 @@ export class ArtistInfo extends Component {
                         Take a look at the genres your artist has embraced over the years, and his/her/their overall genre trends.</p>
                     <div id='chart-render'>
                         <div id='radar' aria-label='radar chart'>
-                            <GenreRadar albums={this.props.albums}/>
+                            <GenreRadar albums={this.props.albums} />
                         </div>
+                        <br />
                         <div id='scatter' aria-label='scatter chart'>
                             <GenreScatter artist={this.props.artist} albums={this.props.albums} />
                         </div>

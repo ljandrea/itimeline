@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import moment from 'moment';
+import FontAwesome from 'react-fontawesome';
 
 export class PostItem extends Component {
     // Upvotes and downvotes posts
@@ -30,8 +31,12 @@ export class PostItem extends Component {
                         {this.props.info.content}
                     </h4>
                     <div className='btn-group'>
-                        <button className='btn btn-success btn-sm' onClick={() => this.upvotePost()}>up</button>
-                        <button className='btn btn-danger btn-sm' onClick={() => this.downvotePost()}>down</button>
+                        <button className='btn btn-success btn-sm' onClick={() => this.upvotePost()}>
+                            <FontAwesome className='fas fa-arrow-circle-up' name='up' />
+                        </button>
+                        <button className='btn btn-danger btn-sm' onClick={() => this.downvotePost()}>
+                            <FontAwesome className='fas fa-arrow-circle-down' name=' down' />
+                        </button>
                     </div>
                     <div className='card-subtitle mb-2 text-muted' style={{ paddingTop: '1em' }}>
 
