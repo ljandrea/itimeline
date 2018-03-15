@@ -17,7 +17,8 @@ export class GenreRadar extends Component {
             albums: nextProps.albums
         });
     }
-
+    // Gets genre data based on the 50 results returned 
+    // Counts number of albums with the given primary album genre
     getGenreData() {
         if (this.state.albums !== []) {
             let genres = {};
@@ -52,7 +53,10 @@ export class GenreRadar extends Component {
         return (
             <div style={{ width: '100%', height: '100%' }}>
                 <h5>Radar</h5>
-                <ResponsiveContainer width='100%' height='100%'>
+                <p style={{ paddingTop: '0' }}>
+                    Shows the number of singles and albums within a specific genre for your artist.
+                </p>
+                <ResponsiveContainer width='100%' height='85%'>
                     <RadarChart outerRadius='75%' data={this.getGenreData()}>
                         <PolarGrid />
                         <PolarAngleAxis dataKey="genre" />

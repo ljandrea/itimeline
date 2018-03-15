@@ -11,7 +11,7 @@ export class NavBar extends Component {
                     <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <a className="navbar-brand" href="#" onClick={() => this.props.showCallback()}>Navbar</a>
+                    <a className="navbar-brand" href="#" onClick={() => this.props.showCallback()}>iTimeline</a>
                     <div className="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul className="navbar-nav">
                             <li className="nav-item active">

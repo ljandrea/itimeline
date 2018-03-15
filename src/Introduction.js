@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
+// Renders the introduction of the site
 export class Introduction extends Component {
     render() {
         return (
             <div aria-label='introduction to site'>
                 <h1 className='display-4'>
-                    this is *insert name here*.
+                    This is iTimeline.
                 </h1>
                 <p className="lead">
                     Learn about the genre evolution of your favorite music artists, courtesy of the iTunes API.

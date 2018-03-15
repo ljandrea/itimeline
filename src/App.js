@@ -60,32 +60,7 @@ class App extends Component {
         this.setState({ query: '' });
     }
 
-    // Gets genre data based on the 50 results returned 
-    // Counts number of albums with the given primary album genre
-    getGenreData() {
-        if (this.state.albums !== []) {
-            let genres = {};
-            this.state.albums.map((d) => {
-                let genre = d.primaryGenreName;
-                if (!genres[genre]) {
-                    genres[genre] = { count: 1 };
-                } else if (genres[genre]) {
-                    genres[genre].count++;
-                }
-                return genre;
-            });
-            let radarLabels = Object.keys(genres);
-            let values = Object.values(genres);
-            let radarValues = [];
-            values.map((d) => {
-                radarValues.push(d.count);
-            });
-            return { radarLabels, radarValues };
-        }
-    }
-
     render() {
-        console.log(this.getGenreData());
         return (
             <body className="container">
                 <NavBar showIntro={this.state.showIntro} artist={this.state.artist} showCallback={this.showIntro} hideCallback={this.hideIntro} />

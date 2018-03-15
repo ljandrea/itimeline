@@ -4,6 +4,7 @@ import 'react-vertical-timeline-component/style.min.css';
 import './Timeline.css';
 import FontAwesome from 'react-fontawesome';
 
+// Renders a timeline element with the name of the album, genre, and song preview
 export class TimelineElement extends Component {
     constructor(props) {
         super(props);

@@ -82,6 +82,9 @@ export class GenreScatter extends Component {
         return (
             <div style={{ width: '100%', height: '100%' }}>
                 <h5>Scatter</h5>
+                <p style={{ paddingTop: '0' }}>
+                    Time-wise scatter graph mapping out the genre of the searched artist for their album of that year across their career.
+                </p>
                 <ResponsiveContainer width='100%' height="80%">
                     <ScatterChart
                         margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>

@@ -31,11 +31,11 @@ export class Team extends Component {
             },
             {
                 name: 'Billy Wang',
-                class: 'Junior, ________',
-                webDev: 'fill in webdev',
-                spring: "fill in spring break",
-                favArtist: 'fill in artist',
-                thanks: "fill in thank you"
+                class: 'Junior, Geographic Information Systems, Informatics Minor',
+                webDev: 'I like the creativity and personal expression I can show through webdev and my code. Its not all unicorns and rainbows though, webdev defintely prompts different problems and obstacles to overcome, but I enjoy trying to resolve these different problems, because it feels like a puzzle',
+                spring: "Spring break is going to be a time to relax for me. I look forward to spending time with friends and family, especially watching Netflix and movies with my sister! Also, I'm going to try and read a lot of books. I'm going to get my drivers liscense. I'm going to get a haircut.",
+                favArtist: 'Sam Feldt & G-eazy',
+                thanks: "Thank you to Rosemary, who's been a great help & I'm very grateful that she's such a caring and understanding TA. And thank you to Mike, who makes class a lot of fun and engaging, which relieves the complexity of learning and lifts off the stress of assignments and projects."
             }
         ];
 

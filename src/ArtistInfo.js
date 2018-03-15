@@ -33,7 +33,7 @@ export class ArtistInfo extends Component {
                 </section>
                 <section id='timeline'
                     className='panel panel-default jumptarget'
-                    style={{ marginBottom: '0' }}
+                    style={{ paddingTop: '4.5em', marginBottom: '0' }}
                     aria-label='timeline of artist albums and singles'>
                     <hr id='div-design' />
                     <Timeline query={this.props.query} artist={this.props.artist} albums={this.props.albums} />

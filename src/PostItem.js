@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import moment from 'moment';
 import FontAwesome from 'react-fontawesome';
 
+// Renders each post for an artist
 export class PostItem extends Component {
     // Upvotes and downvotes posts
     upvotePost() {
