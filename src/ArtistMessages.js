@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import { Comment } from './Comment';
 import firebase from 'firebase';
-import md5 from 'md5';
 import { Post } from './Post.js';
 
 export class ArtistMessages extends Component {
     constructor(props) {
         super(props);
-        //<ArtistMessages artist = {this.state.artist} />
         this.state = {
             author: '',
             content: '',
             posts: []
-        }
+        };
     }
 
     // Handles updating firebase and the list of comments for each Artist
@@ -40,7 +37,7 @@ export class ArtistMessages extends Component {
         })
     }
 
-    // Adds a comment to the database when it is created.
+    // Adds a post to the database when it is created.
     addPost() {
         let post = {
             content: this.state.content,
@@ -56,6 +53,7 @@ export class ArtistMessages extends Component {
         });
     }
 
+    // Retrieves all posts from the database
     getPosts() {
         let posts = this.state.posts === null ? [] :
             Object.keys(this.state.posts).map((d) => {
@@ -69,9 +67,11 @@ export class ArtistMessages extends Component {
     render() {
         return (
             <div>
-                <h3>comments</h3>
-                <p style={{ paddingTop: '0.5em', marginBottom: '0' }}>Have an interesting insight to share?
-                Did you learn something new? Do you just freaking love this artist? Feel free to comment below!</p>
+                <h3>Comments</h3>
+                <p style={{ paddingTop: '0.5em', marginBottom: '0' }} aria-label='comments section description'>
+                    Have an interesting insight to share?
+                    Did you learn something new? Do you just freaking love this artist? Feel free to comment below!
+                </p>
                 <strong>Note: Be nice! Don't post anything hateful, offensive, or rude.</strong>
                 {/* This makes each comment for the specific artist */}
                 <div style={{ padding: '1em 0' }}>
@@ -79,7 +79,7 @@ export class ArtistMessages extends Component {
                 </div>
                 <hr />
                 {/* This is the form for making a new comment */}
-                <div style={{ margin: '0 1em' }}>
+                <div style={{ margin: '0 1em' }} aria-label='comment form'>
                     <h5>add a comment:</h5>
                     <input className="form-control "
                         name="name"

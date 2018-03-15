@@ -33,14 +33,11 @@
 
 #root {
     padding-top: 3em;
-    /* background-color: lightgrey; */
-    /* height: 100vh; */
-    /* padding-bottom: 15.5%; */
 }
 
-#radar, #scatter {
+#radar {
     height: 10em;
-    background: grey;
+    /* background: grey; */
     margin-left: 1em;
     margin-right: 1em;
 }

@@ -1,9 +1,10 @@
 #team {
-    width: 80%;
+    width: 90%;
     padding-left: 10%;
-    border-color: black;
 }
 
-#autumn, #maddie {
-    border-right: 5px linear-gradient(to top, #c6e2ff, #ffe9a3);
+#div-design {
+    height: 5px;
+    background: linear-gradient(to right, #c6e2ff, #ffe9a3);
+    border: 0;
 }

@@ -35,6 +35,16 @@ export class TimelineElement extends Component {
             });
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.getSongOnAlbum(nextProps.data.id)
+            .then((response) => {
+                this.setState({
+                    song: response,
+                    audio: new Audio(response)
+                });
+            });
+    }
+
     getSongOnAlbum(albumId) {
         const URL_TEMPLATE = "https://itunes.apple.com/lookup?id={albumId}&entity=song";
         let url = URL_TEMPLATE.replace('{albumId}', albumId);
@@ -53,6 +63,7 @@ export class TimelineElement extends Component {
 
     //Plays the given track, spinning the given image.
     playTrackPreview(track) { //eslint-disable-line
+        console.log(this.props.data.artist + ": " + track);
         if (track !== '') {
             if (this.audioState.previewAudio.src !== track) { //if a new track to play
                 this.audioState.previewAudio.pause(); //pause current
@@ -71,7 +82,7 @@ export class TimelineElement extends Component {
     render() {
         let d = this.props.data;
         let artworkUrl = 'url(' + d.artwork + ')';
-        console.log(this.state.song);
+        // console.log(this.state.song);
         // this.getSongOnAlbum(d.id);
         return (
             <VerticalTimelineElement
@@ -89,7 +100,7 @@ export class TimelineElement extends Component {
                     className='btn btn-success'
                     onClick={() => this.playTrackPreview(this.state.song)}
                 >
-                    <FontAwesome className='fas fa-play' /> / <FontAwesome className='fas fa-pause' />
+                    <FontAwesome className='fas fa-play' name='play' /> / <FontAwesome className='fas fa-pause' name='pause' />
                 </button>
                 <p>
                     {/* {d.copyright} */}

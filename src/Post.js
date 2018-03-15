@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Comment } from './Comment.js';
+import { PostItem } from './PostItem.js';
 
-// Renders all posts of a given category
+// Filters posts based on the current artist to be rendered as a PostItem
 export class Post extends Component {
     getPosts() {
         let posts = this.props.posts.filter((d) => {
@@ -12,11 +12,10 @@ export class Post extends Component {
 
     render() {
         console.log(this.props.posts);
-        // console.log(this.getPosts());
         return (
             <div className='postList'>
                 {this.getPosts().map((d, i) => {
-                    return <Comment key={'post' + i} info={d} />
+                    return <PostItem key={'post' + i} info={d} />
                 })}
             </div>
         )

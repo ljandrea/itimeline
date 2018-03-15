@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Link } from "react-router-dom";
 import './NavBar.css';
 
+// Renders a NavBar based on if an artist has been searched or not
 export class NavBar extends Component {
     render() {
         return (

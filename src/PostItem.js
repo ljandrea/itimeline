@@ -2,19 +2,17 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import moment from 'moment';
 
-export class Comment extends Component {
+export class PostItem extends Component {
+    // Upvotes and downvotes posts
     upvotePost() {
         let postRef = firebase.database().ref('posts/' + this.props.info.key + '/likes');
         postRef.transaction(function (currentClicks) {
-            // If node/clicks has never been set, currentRank will be `null`.
             return (currentClicks || 0) + 1;
         });
     }
-
     downvotePost() {
         let postRef = firebase.database().ref('posts/' + this.props.info.key + '/likes');
         postRef.transaction((currentClicks) => {
-            // If node/clicks has never been set, currentRank will be `null`.
             if (currentClicks >= 1) {
                 return (currentClicks || 0) - 1;
             }
@@ -26,7 +24,7 @@ export class Comment extends Component {
 
     render() {
         return (
-            <div className='postList' style={{ marginBottom: '1.2em' }}>
+            <div className='postList' style={{ marginBottom: '1.2em' }} aria-label='posted item about artist'>
                 <div className='card' style={{ padding: '1em' }}>
                     <h4 className="card-title">
                         {this.props.info.content}

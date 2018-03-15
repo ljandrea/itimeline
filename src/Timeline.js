@@ -27,11 +27,10 @@ export class Timeline extends Component {
             // filters results to be only albums of the artist
             this.state.albums.map((d) => {
                 let artist = d.artistName.toString();
-                if (
-                    // !name.includes('Single') && 
-                    artist === this.state.artist) {
+                if (artist === this.state.artist) {
                     return albumsOnly.push(d);
                 }
+                return artist;
             });
 
             // filters albums by unique names
@@ -61,7 +60,7 @@ export class Timeline extends Component {
                 return a.releaseDate > b.releaseDate ? 1 : a.releaseDate < b.releaseDate ? -1 : 0;
             });
 
-            console.log(uniqueAlbums);
+            // console.log(uniqueAlbums);
             return uniqueAlbums;
         }
     }
@@ -70,15 +69,16 @@ export class Timeline extends Component {
         // let data = this.getTimelineData();
         return (
             <div>
-                <h3>timeline</h3>
+                <h3>Timeline</h3>
                 <p>Explore how your artist has changed (or not) with each album and song released,
                             and take a listen at their sound!
                 </p>
+                <p>Some artists may not have audio previews available.</p>
                 {this.state.artist !== null &&
                     <div id='timeline-inner'>
                         <VerticalTimeline>
                             {this.getTimelineData().map((d, i) => {
-                                console.log(d);
+                                // console.log(d);
                                 return <TimelineElement key={'time-el' + i} data={d} />
                             })}
                         </VerticalTimeline>
